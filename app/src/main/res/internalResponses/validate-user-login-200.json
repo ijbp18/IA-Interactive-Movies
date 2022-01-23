@@ -1,0 +1,11 @@
+{
+  "access_token": "6mmf27733v6f3634",
+  "token_type": "bearer",
+  "expires_in": 999,
+  "refresh_token": "f9f3a4766c814ad79bfafbc80bfea098",
+  "as:client_id": "cliente_id",
+  "username": "pruebas_testeo@gmail.com",
+  "country_code": "MX",
+  ".issued": "Fri, 16 Jun 2017 17:32:49 GMT",
+  ".expires": "Sun, 16 Jul 2017 17:32:49 GMT"
+}

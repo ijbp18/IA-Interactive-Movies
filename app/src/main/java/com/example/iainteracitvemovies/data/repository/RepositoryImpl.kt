@@ -2,7 +2,7 @@ package com.example.iainteracitvemovies.data.repository
 
 import com.example.iainteracitvemovies.data.network.APIService
 import com.example.iainteracitvemovies.data.network.mappers.mapFromEntityMovieList
-import com.example.iainteracitvemovies.data.network.mappers.mapFromUserEntity
+import com.example.iainteracitvemovies.data.network.mappers.toUserUnfoUI
 import com.example.iainteracitvemovies.data.repository.utils.BaseRepository
 import com.example.iainteracitvemovies.domain.entities.UserUI
 import com.example.iainteracitvemovies.domain.common.Result
@@ -25,9 +25,8 @@ class RepositoryImpl @Inject constructor(
             val responseLogin = myServiceAPI.validateUserLogin(objectBody)
 
             val authorization = "${responseLogin.token_type} ${responseLogin.access_token}"
-
             val responseUserInfo = myServiceAPI.getUserInfo(authorization)
-            emit(Result.Success(data = mapFromUserEntity(responseUserInfo)))
+            emit(Result.Success(data = responseUserInfo.toUserUnfoUI()))
 
         }.onStart {
             emit(Result.Loading)
