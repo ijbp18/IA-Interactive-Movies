@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_message_by_default">Ocurrió un problema, intente nuevamente.</string>
+    <string name="label_accept_button">Aceptar</string>
+    <string name="label_user_login">Usuario</string>
+    <string name="label_pass_login">Contraseña</string>
+    <string name="label_btn_login">Iniciar sesión</string>
+    <string name="label_empty_field_error">This field is required</string>
+</resources>

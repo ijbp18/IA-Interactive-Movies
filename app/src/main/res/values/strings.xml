@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">IAInteractive Movies</string>
+    <string name="bodyRequest">country_code=MX&amp;username=%1$s&amp;password=%2$s&amp;grant_type=password&amp;client_id=IATestCandidate&amp;client_secret=c840457e777b4fee9b510fbcd4985b68</string>
+    <string name="error_message_by_default">Ocurrió un problema, intente nuevamente.</string>
+    <string name="label_accept_button">Aceptar</string>
+    <string name="label_user_login">Usuario</string>
+    <string name="label_pass_login">Contraseña</string>
+    <string name="label_btn_login">Iniciar sesión</string>
+    <string name="label_empty_field_error">This field is required</string>
+</resources>
