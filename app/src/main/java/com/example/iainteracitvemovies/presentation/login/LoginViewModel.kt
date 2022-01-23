@@ -1,4 +1,4 @@
-package com.example.iainteracitvemovies.presentation
+package com.example.iainteracitvemovies.presentation.login
 
 import android.content.Context
 import android.widget.EditText

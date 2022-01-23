@@ -1,10 +1,12 @@
 package com.example.iainteracitvemovies.data.repository
 
 import com.example.iainteracitvemovies.data.network.APIService
+import com.example.iainteracitvemovies.data.network.mappers.mapFromEntityMovieList
 import com.example.iainteracitvemovies.data.network.mappers.mapFromUserEntity
 import com.example.iainteracitvemovies.data.repository.utils.BaseRepository
 import com.example.iainteracitvemovies.domain.entities.UserUI
 import com.example.iainteracitvemovies.domain.common.Result
+import com.example.iainteracitvemovies.domain.entities.MovieUI
 import com.example.iainteracitvemovies.utils.DispatcherProvider
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -26,6 +28,19 @@ class RepositoryImpl @Inject constructor(
 
             val responseUserInfo = myServiceAPI.getUserInfo(authorization)
             emit(Result.Success(data = mapFromUserEntity(responseUserInfo)))
+
+        }.onStart {
+            emit(Result.Loading)
+        }.catch {
+            emit(handlerErrorException(throwable = it))
+        }.flowOn(dispatchers.io())
+    }
+
+    override fun getMovies(): Flow<Result<MovieUI>> {
+        return flow<Result<MovieUI>> {
+
+            val response = myServiceAPI.getMovies()
+            emit(Result.Success(data = mapFromEntityMovieList(response)))
 
         }.onStart {
             emit(Result.Loading)

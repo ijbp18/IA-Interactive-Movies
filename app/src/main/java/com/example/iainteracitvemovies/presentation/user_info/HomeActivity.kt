@@ -1,4 +1,4 @@
-package com.example.iainteracitvemovies.presentation
+package com.example.iainteracitvemovies.presentation.user_info
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,10 +6,11 @@ import androidx.fragment.app.Fragment
 import com.example.iainteracitvemovies.R
 import com.example.iainteracitvemovies.databinding.ActivityHomeBinding
 import com.example.iainteracitvemovies.domain.entities.UserUI
-import com.example.iainteracitvemovies.presentation.LoginActivity.Companion.USER_KEY
-import com.example.iainteracitvemovies.presentation.movieList.MoviesFragment
-import com.example.iainteracitvemovies.presentation.user_info.ProfileFragment
+import com.example.iainteracitvemovies.presentation.login.LoginActivity.Companion.USER_KEY
+import com.example.iainteracitvemovies.presentation.movie_list.MoviesFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding

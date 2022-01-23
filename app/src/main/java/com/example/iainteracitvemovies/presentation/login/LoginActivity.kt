@@ -1,4 +1,4 @@
-package com.example.iainteracitvemovies.presentation
+package com.example.iainteracitvemovies.presentation.login
 
 import android.app.Activity
 import android.content.Intent
@@ -10,6 +10,7 @@ import com.example.iainteracitvemovies.common.BaseActivity
 import com.example.iainteracitvemovies.databinding.ActivityMainBinding
 import com.example.iainteracitvemovies.domain.common.Result
 import com.example.iainteracitvemovies.domain.entities.UserUI
+import com.example.iainteracitvemovies.presentation.user_info.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

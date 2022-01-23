@@ -1,6 +1,8 @@
 package com.example.iainteracitvemovies.di
 
 import com.example.iainteracitvemovies.data.repository.Repository
+import com.example.iainteracitvemovies.domain.usecase.MoviesUseCase
+import com.example.iainteracitvemovies.domain.usecase.MoviesUseCaseImpl
 import com.example.iainteracitvemovies.domain.usecase.UserUseCase
 import com.example.iainteracitvemovies.domain.usecase.UserUseCaseImpl
 import dagger.Module
@@ -23,5 +25,13 @@ object UseCaseModule {
         usersRepository: Repository
     ): UserUseCase {
         return UserUseCaseImpl(usersRepository)
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideMoviesUseCase(
+        usersRepository: Repository
+    ): MoviesUseCase {
+        return MoviesUseCaseImpl(usersRepository)
     }
 }

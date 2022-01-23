@@ -2,6 +2,7 @@ package com.example.iainteracitvemovies.data.repository
 
 import com.example.iainteracitvemovies.domain.entities.UserUI
 import com.example.iainteracitvemovies.domain.common.Result
+import com.example.iainteracitvemovies.domain.entities.MovieUI
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -9,4 +10,5 @@ import kotlinx.coroutines.flow.Flow
  */
 interface Repository {
     fun validateUserInfo(objectBody: String): Flow<Result<UserUI>>
+    fun getMovies(): Flow<Result<MovieUI>>
 }

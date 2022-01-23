@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IAInteracitveMovies">
         <activity
-            android:name=".presentation.HomeActivity"
+            android:name=".presentation.user_info.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.LoginActivity"
+            android:name=".presentation.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

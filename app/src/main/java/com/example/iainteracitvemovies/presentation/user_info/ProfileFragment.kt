@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.iainteracitvemovies.R
 import com.example.iainteracitvemovies.databinding.FragmentProfileBinding
 import com.example.iainteracitvemovies.domain.entities.UserUI
-import com.example.iainteracitvemovies.presentation.LoginActivity
+import com.example.iainteracitvemovies.presentation.login.LoginActivity
 
 class ProfileFragment : Fragment() {
 
