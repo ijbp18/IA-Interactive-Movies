@@ -29,9 +29,9 @@ class ProfileFragment : Fragment() {
         binding.apply {
             userSelected.let { userInfo ->
                 tvProfileUser.text = getString(R.string.label_full_name, userInfo.first_name, userInfo.last_name)
-                tvEmailText.text =  userInfo.email
-                tvPhoneText.text = userInfo.phone_number
-                tvCardNumberText.text = userInfo.card_number
+                txtEmail.text =  userInfo.email
+                txtPhone.text = if(userInfo.phone_number.isEmpty()) getString(R.string.text_without_data) else userInfo.phone_number
+                txtCardNumber.text = userInfo.card_number
             }
         }
     }
