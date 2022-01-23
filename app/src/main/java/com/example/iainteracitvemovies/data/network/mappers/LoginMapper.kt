@@ -7,13 +7,13 @@ import com.example.iainteracitvemovies.domain.entities.UserUI
  * Created by Joao Betancourth on 22,enero,2022
  */
 
-fun mapFromUserEntity(response: UserResponse): UserUI {
+fun UserResponse.toUserUnfoUI(): UserUI {
     return UserUI(
-        response.email,
-        response.first_name,
-        response.last_name,
-        response.phone_number,
-        response.profile_picture,
-        response.card_number
+        this.email,
+        this.first_name,
+        this.last_name,
+        this.phone_number,
+        this.profile_picture,
+        this.card_number
     )
 }
