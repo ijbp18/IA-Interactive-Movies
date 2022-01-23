@@ -1,5 +1,5 @@
 package com.example.iainteracitvemovies.domain.entities
-
+import java.io.Serializable
 /**
  * Created by Joao Betancourth on 22,enero,2022
  */
@@ -10,4 +10,4 @@ data class UserUI(
     val phone_number: String,
     val profile_picture: String,
     val card_number: String
-)
+):Serializable

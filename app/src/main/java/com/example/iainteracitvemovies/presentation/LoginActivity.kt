@@ -1,8 +1,10 @@
 package com.example.iainteracitvemovies.presentation
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.example.iainteracitvemovies.common.BaseActivity
 import com.example.iainteracitvemovies.databinding.ActivityMainBinding
@@ -15,6 +17,16 @@ class LoginActivity : BaseActivity() {
 
     private val viewModel: LoginViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
+
+    private var usersResultContent =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+
+            when (it.resultCode) {
+                Activity.RESULT_OK -> {
+                    //nothing to do
+                }
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +52,7 @@ class LoginActivity : BaseActivity() {
             when (it) {
                 is Result.Success<UserUI> -> {
                     binding.homeLoader.visibility = View.GONE
-                    Toast.makeText(this@LoginActivity, "Pasar a Info Perfil :D", Toast.LENGTH_SHORT)
-                        .show()
-                    //NextActivity
+                    showUserInfoScreen(it.data)
                 }
                 is Result.Loading -> {
                     binding.homeLoader.visibility = View.VISIBLE
@@ -50,7 +60,6 @@ class LoginActivity : BaseActivity() {
                 is Result.Failure -> {
                     binding.homeLoader.visibility = View.GONE
                     showMessageFromBackend(it.error, it.httpCode) {
-
                     }
                 }
             }
@@ -66,5 +75,20 @@ class LoginActivity : BaseActivity() {
                 }
             }
         })
+    }
+
+    private fun showUserInfoScreen(data: UserUI?) {
+
+        data?.let {
+            val userInfoIntent =
+                Intent(this@LoginActivity, HomeActivity::class.java).apply {
+                    putExtra(USER_KEY, it)
+                }
+            usersResultContent.launch(userInfoIntent)
+        }
+    }
+
+    companion object {
+        const val USER_KEY = "user_key"
     }
 }

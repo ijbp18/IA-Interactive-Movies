@@ -7,4 +7,12 @@
     <string name="label_pass_login">Contraseña</string>
     <string name="label_btn_login">Iniciar sesión</string>
     <string name="label_empty_field_error">This field is required</string>
+
+    <string name="label_full_name">%1$s %2$s</string>
+
+
+    <string name="menu_1">Perfil</string>
+    <string name="menu_2">Cartelera</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
