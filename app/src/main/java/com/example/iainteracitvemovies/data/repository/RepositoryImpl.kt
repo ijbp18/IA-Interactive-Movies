@@ -2,12 +2,12 @@ package com.example.iainteracitvemovies.data.repository
 
 import com.example.iainteracitvemovies.data.network.APIService
 import com.example.iainteracitvemovies.data.network.APIServiceAWS
-import com.example.iainteracitvemovies.data.network.mappers.mapFromEntityMovieList
+import com.example.iainteracitvemovies.data.network.mappers.toMovieUIList
 import com.example.iainteracitvemovies.data.network.mappers.toUserUnfoUI
 import com.example.iainteracitvemovies.data.repository.utils.BaseRepository
 import com.example.iainteracitvemovies.domain.entities.UserUI
 import com.example.iainteracitvemovies.domain.common.Result
-import com.example.iainteracitvemovies.domain.entities.MovieUI
+import com.example.iainteracitvemovies.domain.entities.MovieInfoUI
 import com.example.iainteracitvemovies.utils.DispatcherProvider
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -21,7 +21,7 @@ class RepositoryImpl @Inject constructor(
     private val dispatchers: DispatcherProvider
 ) : Repository, BaseRepository() {
 
-    override fun validateUserInfo(objectBody : String): Flow<Result<UserUI>> {
+    override fun validateUserInfo(objectBody: String): Flow<Result<UserUI>> {
         return flow<Result<UserUI>> {
 
             val responseLogin = myServiceAPI.validateUserLogin(objectBody)
@@ -37,11 +37,11 @@ class RepositoryImpl @Inject constructor(
         }.flowOn(dispatchers.io())
     }
 
-    override fun getMovies(): Flow<Result<MovieUI>> {
-        return flow<Result<MovieUI>> {
+    override fun getMovies(): Flow<Result<MovieInfoUI>> {
+        return flow<Result<MovieInfoUI>> {
 
             val response = myServiceAWS.getMovies()
-            emit(Result.Success(data = mapFromEntityMovieList(response)))
+            emit(Result.Success(data = response.toMovieUIList()))
 
         }.onStart {
             emit(Result.Loading)

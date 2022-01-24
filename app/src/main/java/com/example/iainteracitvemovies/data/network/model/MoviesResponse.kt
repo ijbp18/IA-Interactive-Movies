@@ -7,7 +7,9 @@ import com.google.gson.annotations.SerializedName
  */
 data class MoviesResponse(
     @SerializedName("movies")
-    val movies: ArrayList<Movies>
+    val movies: ArrayList<Movies>,
+    @SerializedName("routes")
+    val routes: ArrayList<Routes>
 )
 
 data class Movies(
@@ -55,4 +57,22 @@ data class Cast(
     val label: String,
     @SerializedName("value")
     val value: ArrayList<String>
+)
+
+data class Routes(
+    @SerializedName("code")
+    val code: String,
+    @SerializedName("sizes")
+    val sizes: Size
+)
+
+data class Size(
+    @SerializedName("large")
+    val large: String,
+    @SerializedName("medium")
+    val medium: String,
+    @SerializedName("small")
+    val small: String,
+    @SerializedName("x-large")
+    val xlarge: String
 )

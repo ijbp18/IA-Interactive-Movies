@@ -1,10 +1,8 @@
 package com.example.iainteracitvemovies.data.network
 
-import com.example.iainteracitvemovies.data.network.Endpoints.Companion.GET_MOVIES
 import com.example.iainteracitvemovies.data.network.Endpoints.Companion.GET_USER
 import com.example.iainteracitvemovies.data.network.Endpoints.Companion.VALIDATE_USER
 import com.example.iainteracitvemovies.data.network.model.LoginResponse
-import com.example.iainteracitvemovies.data.network.model.MoviesResponse
 import com.example.iainteracitvemovies.data.network.model.UserResponse
 import retrofit2.http.*
 
@@ -18,6 +16,4 @@ interface APIService {
     @GET(GET_USER)
     suspend fun getUserInfo(@Header("Authorization") authorization: String): UserResponse
 
-    @GET(GET_MOVIES)
-    suspend fun getMovies(): MoviesResponse
 }

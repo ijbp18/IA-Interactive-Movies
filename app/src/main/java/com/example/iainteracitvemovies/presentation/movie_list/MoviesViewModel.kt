@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.iainteracitvemovies.domain.common.Result
+import com.example.iainteracitvemovies.domain.entities.MovieInfoUI
 import com.example.iainteracitvemovies.domain.entities.MovieUI
 import com.example.iainteracitvemovies.domain.usecase.MoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,8 +21,8 @@ class MoviesViewModel @Inject constructor(
     private val moviesUseCase: MoviesUseCase
 ) : ViewModel() {
 
-    private val _movies = MutableLiveData<Result<MovieUI>>()
-    val movies: LiveData<Result<MovieUI>> get() = _movies
+    private val _movies = MutableLiveData<Result<MovieInfoUI>>()
+    val movies: LiveData<Result<MovieInfoUI>> get() = _movies
 
     fun retrieveMoviesDefault() {
         viewModelScope.launch {
