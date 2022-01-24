@@ -35,19 +35,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_user_profile"
         tools:text="Jhon Doe" />
 
+    <ImageView
+        android:id="@+id/image_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_email__24"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="5dp"
+        android:text="@string/label_email"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toStartOf="@id/label_email"
+        app:layout_constraintTop_toBottomOf="@id/tv_profile_user" />
+
     <TextView
         android:id="@+id/label_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="30dp"
         android:text="@string/label_email"
@@ -80,11 +92,23 @@
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/label_email" />
 
+    <ImageView
+        android:id="@+id/image_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_phone_24"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="5dp"
+        android:text="@string/label_email"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toStartOf="@id/label_phone"
+        app:layout_constraintTop_toBottomOf="@id/separator_view_one" />
+
     <TextView
         android:id="@+id/label_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
         android:text="@string/label_phone"
@@ -117,11 +141,22 @@
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/label_phone" />
 
+    <ImageView
+        android:id="@+id/image_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_card_24"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="5dp"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toStartOf="@id/label_card_number"
+        app:layout_constraintTop_toBottomOf="@id/separator_view_two" />
+
     <TextView
         android:id="@+id/label_card_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
         android:text="@string/label_card_numer"
