@@ -2,7 +2,7 @@ package com.example.iainteracitvemovies.domain.usecase
 
 import com.example.iainteracitvemovies.data.repository.Repository
 import com.example.iainteracitvemovies.domain.common.Result
-import com.example.iainteracitvemovies.domain.entities.MovieUI
+import com.example.iainteracitvemovies.domain.entities.MovieInfoUI
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -11,7 +11,7 @@ import javax.inject.Inject
  */
 class MoviesUseCaseImpl @Inject constructor(private val remoteRepository: Repository) :
     MoviesUseCase {
-    override suspend fun invoke(): Flow<Result<MovieUI>> {
+    override suspend fun invoke(): Flow<Result<MovieInfoUI>> {
         return remoteRepository.getMovies()
     }
 }

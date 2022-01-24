@@ -5,13 +5,16 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.iainteracitvemovies.R
 import com.example.iainteracitvemovies.databinding.ActivityHomeBinding
+import com.example.iainteracitvemovies.domain.entities.MovieUI
 import com.example.iainteracitvemovies.domain.entities.UserUI
 import com.example.iainteracitvemovies.presentation.login.LoginActivity.Companion.USER_KEY
+import com.example.iainteracitvemovies.presentation.movie_detail.MovieDetailFragment
 import com.example.iainteracitvemovies.presentation.movie_list.MoviesFragment
+import com.example.iainteracitvemovies.presentation.utils.Communicator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), Communicator {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var userSelected: UserUI
@@ -60,6 +63,22 @@ class HomeActivity : AppCompatActivity() {
         transaction.replace(R.id.container, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
+    }
+
+    override fun passMovieData(movieSelected: MovieUI) {
+        val bundle = Bundle()
+        bundle.putSerializable(SELECTED_MOVIE_KEY, movieSelected)
+
+        val transaction = this.supportFragmentManager.beginTransaction()
+        val fragment = MovieDetailFragment()
+        fragment.arguments = bundle
+
+        transaction.replace(R.id.container, fragment)
+        transaction.commit()
+    }
+
+    companion object{
+        const val SELECTED_MOVIE_KEY = "selected_movie_key"
     }
 
 }

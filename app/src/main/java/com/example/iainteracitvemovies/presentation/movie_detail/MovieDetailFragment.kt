@@ -5,15 +5,32 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.iainteracitvemovies.R
+import com.example.iainteracitvemovies.databinding.FragmentMovieDetailBinding
+import com.example.iainteracitvemovies.databinding.FragmentMoviesBinding
+import com.example.iainteracitvemovies.domain.entities.MovieUI
+import com.example.iainteracitvemovies.presentation.user_info.HomeActivity.Companion.SELECTED_MOVIE_KEY
+import com.example.iainteracitvemovies.presentation.utils.Communicator
 
 class MovieDetailFragment : Fragment() {
+
+    private lateinit var movieSelected : MovieUI
+    private lateinit var binding: FragmentMovieDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie_detail, container, false)
+    ): View {
+        binding = FragmentMovieDetailBinding.inflate(layoutInflater, container, false)
+        getBundleExtra()
+        return binding.root
+    }
+
+    private fun getBundleExtra() {
+        movieSelected = arguments?.getSerializable(SELECTED_MOVIE_KEY) as MovieUI
+        movieSelected.let {
+            Toast.makeText(activity, "Detail name -> ${it.name}", Toast.LENGTH_SHORT).show()
+        }
     }
 }

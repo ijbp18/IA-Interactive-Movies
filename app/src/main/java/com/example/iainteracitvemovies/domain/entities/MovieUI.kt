@@ -1,14 +1,19 @@
 package com.example.iainteracitvemovies.domain.entities
 
+import com.example.iainteracitvemovies.data.network.model.Size
+import java.io.Serializable
+
+
 /**
  * Created by Joao Betancourth on 23,enero,2022
  */
 
-data class MovieUI(
-    val movies: ArrayList<MovieContentUI>
+data class MovieInfoUI(
+    val movies: ArrayList<MovieUI>,
+    val routes: ArrayList<RouteUI>
 )
 
-data class MovieContentUI(
+data class MovieUI(
     val rating: String,
     val media: ArrayList<MediaUI>,
     val cast: ArrayList<CastUI>,
@@ -22,7 +27,7 @@ data class MovieContentUI(
     val name: String,
     val code: String,
     val original_name: String
-)
+):Serializable
 
 data class MediaUI(
     val resource: String,
@@ -33,4 +38,16 @@ data class MediaUI(
 data class CastUI(
     val label: String,
     val value: ArrayList<String>
+)
+
+data class RouteUI(
+    val code: String,
+    val sizes: Size
+)
+
+data class SizeUI(
+    val large: String,
+    val medium: String,
+    val small: String,
+    val xlarge: String
 )
