@@ -1,14 +1,15 @@
-package com.example.iainteracitvemovies.common
+package com.example.iainteracitvemovies.common.base
 
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import com.example.iainteracitvemovies.R
 import com.example.iainteracitvemovies.common.utils.DialogBuilder
 import com.example.iainteracitvemovies.domain.entities.base.ErrorResponseUI
 
 /**
- * Created by Joao Betancourth on 23,enero,2022
+ * Created by Joao Betancourth on 22,enero,2022
  */
-open class BaseFragment : Fragment(){
+open class BaseActivity : AppCompatActivity() {
+
     fun showMessageFromBackend(
         errorResponseUI: ErrorResponseUI?,
         httCode: Int,
@@ -35,7 +36,7 @@ open class BaseFragment : Fragment(){
         DialogBuilder().createSimpleDialog(
             message,
             getString(R.string.label_accept_button),
-            requireContext(),
+            this@BaseActivity,
             object : DialogBuilder.InterfaceDialog {
                 override fun onAccept() {
                     onAcceptedClicked()

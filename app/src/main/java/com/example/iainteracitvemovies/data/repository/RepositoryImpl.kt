@@ -2,6 +2,8 @@ package com.example.iainteracitvemovies.data.repository
 
 import com.example.iainteracitvemovies.data.network.APIService
 import com.example.iainteracitvemovies.data.network.APIServiceAWS
+import com.example.iainteracitvemovies.data.network.Constants.CINEMA_VALUE
+import com.example.iainteracitvemovies.data.network.Constants.COUNTRY_CODE
 import com.example.iainteracitvemovies.data.network.mappers.toMovieUIList
 import com.example.iainteracitvemovies.data.network.mappers.toUserUnfoUI
 import com.example.iainteracitvemovies.data.repository.utils.BaseRepository
@@ -27,7 +29,7 @@ class RepositoryImpl @Inject constructor(
             val responseLogin = myServiceAPI.validateUserLogin(objectBody)
 
             val authorization = "${responseLogin.token_type} ${responseLogin.access_token}"
-            val responseUserInfo = myServiceAPI.getUserInfo(authorization)
+            val responseUserInfo = myServiceAPI.getUserInfo(authorization, COUNTRY_CODE)
             emit(Result.Success(data = responseUserInfo.toUserUnfoUI()))
 
         }.onStart {
@@ -40,7 +42,7 @@ class RepositoryImpl @Inject constructor(
     override fun getMovies(): Flow<Result<MovieInfoUI>> {
         return flow<Result<MovieInfoUI>> {
 
-            val response = myServiceAWS.getMovies()
+            val response = myServiceAWS.getMovies(COUNTRY_CODE, CINEMA_VALUE)
             emit(Result.Success(data = response.toMovieUIList()))
 
         }.onStart {

@@ -44,10 +44,3 @@ data class RouteUI(
     val code: String,
     val sizes: Size
 )
-
-data class SizeUI(
-    val large: String,
-    val medium: String,
-    val small: String,
-    val xlarge: String
-)

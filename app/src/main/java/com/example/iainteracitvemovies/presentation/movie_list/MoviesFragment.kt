@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.example.iainteracitvemovies.common.BaseFragment
+import com.example.iainteracitvemovies.common.base.BaseFragment
 import com.example.iainteracitvemovies.databinding.FragmentMoviesBinding
 import com.example.iainteracitvemovies.domain.common.Result
 import com.example.iainteracitvemovies.domain.entities.MovieInfoUI

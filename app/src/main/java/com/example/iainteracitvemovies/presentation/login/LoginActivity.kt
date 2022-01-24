@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import com.example.iainteracitvemovies.common.BaseActivity
+import com.example.iainteracitvemovies.common.base.BaseActivity
 import com.example.iainteracitvemovies.databinding.ActivityMainBinding
 import com.example.iainteracitvemovies.domain.common.Result
 import com.example.iainteracitvemovies.domain.entities.UserUI
