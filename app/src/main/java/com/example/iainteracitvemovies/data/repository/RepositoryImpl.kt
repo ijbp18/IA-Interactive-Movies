@@ -1,6 +1,7 @@
 package com.example.iainteracitvemovies.data.repository
 
 import com.example.iainteracitvemovies.data.network.APIService
+import com.example.iainteracitvemovies.data.network.APIServiceAWS
 import com.example.iainteracitvemovies.data.network.mappers.mapFromEntityMovieList
 import com.example.iainteracitvemovies.data.network.mappers.toUserUnfoUI
 import com.example.iainteracitvemovies.data.repository.utils.BaseRepository
@@ -16,6 +17,7 @@ import javax.inject.Inject
  */
 class RepositoryImpl @Inject constructor(
     private val myServiceAPI: APIService,
+    private val myServiceAWS: APIServiceAWS,
     private val dispatchers: DispatcherProvider
 ) : Repository, BaseRepository() {
 
@@ -38,7 +40,7 @@ class RepositoryImpl @Inject constructor(
     override fun getMovies(): Flow<Result<MovieUI>> {
         return flow<Result<MovieUI>> {
 
-            val response = myServiceAPI.getMovies()
+            val response = myServiceAWS.getMovies()
             emit(Result.Success(data = mapFromEntityMovieList(response)))
 
         }.onStart {

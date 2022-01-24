@@ -37,8 +37,10 @@ class ProfileFragment : Fragment() {
     }
 
     private fun getBundleExtra() {
-        val args = arguments
-        userSelected = args?.getSerializable(LoginActivity.USER_KEY) as UserUI
+        arguments?.let {
+            userSelected = it.getSerializable(LoginActivity.USER_KEY) as UserUI
+        }
+
     }
 
 

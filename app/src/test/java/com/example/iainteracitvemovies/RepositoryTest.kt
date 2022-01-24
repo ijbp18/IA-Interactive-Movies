@@ -43,6 +43,7 @@ class RepositoryTest {
         val baseUrl = server.url("/").toString()
         sut = RepositoryImpl(
             createInternalService(baseUrl),
+            createInternalServiceAWS(baseUrl),
             coroutinesTestRule.testDispatcherProvider,
 
             )
@@ -61,8 +62,8 @@ class RepositoryTest {
             val expectedItemListSize = 2
 
             //Creamos los mocksResponse de ambas respuestas a testear
-            val mockedResponseUserLogin = MockResponseFileReader("internalResponses/validate-user-login-200.json").content
-            val mockedResponseUserInfo = MockResponseFileReader("internalResponses/get-info-user-200.json").content
+            val mockedResponseUserLogin = MockResponseFileReader("internal-responses/validate-user-login-200.json").content
+            val mockedResponseUserInfo = MockResponseFileReader("internal-responses/get-info-user-200.json").content
 
             server.enqueue(
                 MockResponse()
@@ -108,8 +109,8 @@ class RepositoryTest {
 
 
             //Validamos que se cumpla cuando la primera respuesta sea un 400 y la segunda un 200
-            val mockedResponseUserLogin = MockResponseFileReader("internalResponses/bad-request-error-respose-400.json").content
-            val mockedResponseUserInfo = MockResponseFileReader("internalResponses/get-info-user-200.json").content
+            val mockedResponseUserLogin = MockResponseFileReader("internal-responses/bad-request-error-respose-400.json").content
+            val mockedResponseUserInfo = MockResponseFileReader("internal-responses/get-info-user-200.json").content
 
             server.enqueue(
                 MockResponse().setResponseCode(httpCode).setBody(mockedResponse)

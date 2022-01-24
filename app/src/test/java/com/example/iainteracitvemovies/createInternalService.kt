@@ -1,6 +1,7 @@
 package com.example.iainteracitvemovies
 
 import com.example.iainteracitvemovies.data.network.APIService
+import com.example.iainteracitvemovies.data.network.APIServiceAWS
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -17,4 +18,15 @@ fun createInternalService(baseUrl: String): APIService {
     .baseUrl(baseUrl)
     .client(okHttpClient)
     .build().create(APIService::class.java)
+}
+
+fun createInternalServiceAWS(baseUrl: String): APIServiceAWS {
+    val okHttpClient = OkHttpClient
+        .Builder()
+        .build()
+    return Retrofit.Builder()
+        .addConverterFactory(GsonConverterFactory.create())
+        .baseUrl(baseUrl)
+        .client(okHttpClient)
+        .build().create(APIServiceAWS::class.java)
 }
