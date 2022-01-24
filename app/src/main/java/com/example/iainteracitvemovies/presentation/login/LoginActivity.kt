@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import com.example.iainteracitvemovies.common.BaseActivity
+import com.example.iainteracitvemovies.common.base.BaseActivity
 import com.example.iainteracitvemovies.databinding.ActivityMainBinding
 import com.example.iainteracitvemovies.domain.common.Result
 import com.example.iainteracitvemovies.domain.entities.UserUI
@@ -52,14 +52,14 @@ class LoginActivity : BaseActivity() {
         viewModel.user.observe(this, {
             when (it) {
                 is Result.Success<UserUI> -> {
-                    binding.homeLoader.visibility = View.GONE
+                    validateComponentEnabled(true)
                     showUserInfoScreen(it.data)
                 }
                 is Result.Loading -> {
-                    binding.homeLoader.visibility = View.VISIBLE
+                    validateComponentEnabled(false)
                 }
                 is Result.Failure -> {
-                    binding.homeLoader.visibility = View.GONE
+                    validateComponentEnabled(true)
                     showMessageFromBackend(it.error, it.httpCode) {
                     }
                 }
@@ -76,6 +76,17 @@ class LoginActivity : BaseActivity() {
                 }
             }
         })
+    }
+
+    private fun validateComponentEnabled(isEnabled: Boolean) {
+        binding.apply {
+            edtTxtUser.isEnabled = isEnabled
+            edtTxtPass.isEnabled = isEnabled
+            btnLogin.isEnabled = isEnabled
+
+            if(isEnabled) homeLoader.visibility = View.GONE
+            else homeLoader.visibility = View.VISIBLE
+        }
     }
 
     private fun showUserInfoScreen(data: UserUI?) {

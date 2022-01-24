@@ -1,5 +1,7 @@
 package com.example.iainteracitvemovies.data.network
 
+import com.example.iainteracitvemovies.data.network.Constants.AUTHORIZATION_KEY
+import com.example.iainteracitvemovies.data.network.Constants.COUNTRY_CODE_KEY
 import com.example.iainteracitvemovies.data.network.Endpoints.Companion.GET_USER
 import com.example.iainteracitvemovies.data.network.Endpoints.Companion.VALIDATE_USER
 import com.example.iainteracitvemovies.data.network.model.LoginResponse
@@ -14,6 +16,6 @@ interface APIService {
     suspend fun validateUserLogin(@Body body: String): LoginResponse
 
     @GET(GET_USER)
-    suspend fun getUserInfo(@Header("Authorization") authorization: String): UserResponse
+    suspend fun getUserInfo(@Header(AUTHORIZATION_KEY) authorization: String, @Query(COUNTRY_CODE_KEY) country_code: String): UserResponse
 
 }

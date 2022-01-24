@@ -30,6 +30,7 @@ class MovieDetailFragment : Fragment() {
         binding = FragmentMovieDetailBinding.inflate(layoutInflater, container, false)
         getBundleExtra()
         setInfoMovie()
+        configVideoPlayer()
         return binding.root
     }
 
@@ -49,7 +50,7 @@ class MovieDetailFragment : Fragment() {
         movieSelected = arguments?.getSerializable(SELECTED_MOVIE_KEY) as MovieUI
         videoRouteUrlBase = arguments?.getString(SELECTED_URL_MOVIE_KEY) as String
         getVideoEndpoint(movieSelected.media)
-        configVideoPlayer()
+
     }
 
     private fun configVideoPlayer() {
@@ -60,11 +61,7 @@ class MovieDetailFragment : Fragment() {
             viewMovie.setMediaController(videoController)
             viewMovie.setVideoURI(Uri.parse(StringBuilder().append(videoRouteUrlBase).append(videoRouteUrlEndpoint).toString()))
             viewMovie.start()
-//            viewMovie.requestFocus()
-//            viewMovie.pause()
         }
-
-
 
     }
 

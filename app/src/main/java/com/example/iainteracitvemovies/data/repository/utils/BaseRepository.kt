@@ -22,7 +22,6 @@ open class BaseRepository {
             val errorResponse = gson.fromJson(messageError, ErrorResponse::class.java)
             errorResponse.toErrorUI()
         } catch (e: Exception) {
-            //Timber.e("ParseError: $e")
             null
         }
     }
