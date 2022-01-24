@@ -20,3 +20,5 @@ Android Native Application developed using Android Studio 4.0.1 and Google libra
 * Gradle 7.3.1
 * minSdkVersion 21
 * targetSdkVersion 31 
+* Hilt (Dependency injection) 2.35
+
