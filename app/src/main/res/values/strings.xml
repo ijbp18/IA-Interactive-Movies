@@ -16,4 +16,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_without_data">N/A</string>
+    <string name="label_profile_title">Profile</string>
+    <string name="label_movies_title">Movies</string>
+    <string name="label_email">Email</string>
+    <string name="label_hint_email_default">username@gmail.com</string>
+    <string name="label_phone">Phone</string>
+    <string name="label_hint_phone_default">536 736 8393</string>
+    <string name="label_card_numer">Card number</string>
+    <string name="label_hint_card_default">1234567634233</string>
 </resources>

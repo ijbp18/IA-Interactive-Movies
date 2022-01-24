@@ -1,6 +1,7 @@
 package com.example.iainteracitvemovies.di
 
 import com.example.iainteracitvemovies.data.network.APIService
+import com.example.iainteracitvemovies.data.network.APIServiceAWS
 import com.example.iainteracitvemovies.data.repository.Repository
 import com.example.iainteracitvemovies.data.repository.RepositoryImpl
 import com.example.iainteracitvemovies.utils.DispatcherProvider
@@ -20,8 +21,9 @@ object RepositoryModule {
     @Provides
     fun provideUserRepository(
         apiService: APIService,
+        apiServiceAWS: APIServiceAWS,
         dispatcherProvider: DispatcherProvider
     ): Repository {
-        return RepositoryImpl(apiService, dispatcherProvider)
+        return RepositoryImpl(apiService,apiServiceAWS, dispatcherProvider)
     }
 }

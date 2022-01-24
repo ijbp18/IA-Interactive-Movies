@@ -17,6 +17,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "API_KEY", API_KEY)
+        buildConfigField("String", "API_KEY_AWS", API_KEY_AWS)
     }
 
     buildFeatures {
@@ -78,6 +79,10 @@ dependencies {
 
     //Circle Imageview
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
 
     testImplementation 'junit:junit:4.+'

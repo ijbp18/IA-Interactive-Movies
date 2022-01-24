@@ -4,7 +4,9 @@ import android.content.Context
 import com.example.iainteracitvemovies.App
 import com.example.iainteracitvemovies.BuildConfig
 import com.example.iainteracitvemovies.data.network.APIService
+import com.example.iainteracitvemovies.data.network.APIServiceAWS
 import com.example.iainteracitvemovies.data.network.Endpoints.Companion.URL_BASE
+import com.example.iainteracitvemovies.data.network.Endpoints.Companion.URL_BASE_AWS
 import com.example.iainteracitvemovies.utils.DefaultDispatcherProvider
 import com.example.iainteracitvemovies.utils.DispatcherProvider
 import com.google.gson.GsonBuilder
@@ -21,6 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 /**
@@ -31,6 +34,19 @@ import javax.inject.Singleton
 @Suppress("unused")
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    @Qualifier
+    @Retention(AnnotationRetention.BINARY)
+    annotation class OkHttpJsonAWS
+
+    @Qualifier
+    @Retention(AnnotationRetention.BINARY)
+    annotation class RetrofitConfigAWS
+
+    @Qualifier
+    @Retention(AnnotationRetention.BINARY)
+    annotation class InterceptorAWS
+
 
     @Singleton
     @Provides
@@ -75,6 +91,7 @@ object AppModule {
         }
     }
 
+
     @Provides
     @Singleton
     internal fun provideCache(context: Context): Cache {
@@ -98,6 +115,50 @@ object AppModule {
     fun provideApi(retrofit: Retrofit): APIService {
         return retrofit.create(APIService::class.java)
     }
+
+    @Provides
+    fun provideApiAWS(@RetrofitConfigAWS retrofit: Retrofit): APIServiceAWS {
+        return retrofit.create(APIServiceAWS::class.java)
+    }
+
+
+    @OkHttpJsonAWS
+    @Provides
+    fun provideOkHttpClientAWS(
+         @InterceptorAWS headerInterceptor: Interceptor,
+        cache: Cache
+    ): OkHttpClient {
+
+        val okHttpClientBuilder = OkHttpClient().newBuilder()
+        okHttpClientBuilder.connectTimeout(CONNECTION_TIMEOUT.toLong(), TimeUnit.SECONDS)
+        okHttpClientBuilder.readTimeout(READ_TIMEOUT.toLong(), TimeUnit.SECONDS)
+        okHttpClientBuilder.writeTimeout(WRITE_TIMEOUT.toLong(), TimeUnit.SECONDS)
+        okHttpClientBuilder.cache(cache)
+        okHttpClientBuilder.addInterceptor(headerInterceptor)
+
+        return okHttpClientBuilder.build()
+    }
+
+    @RetrofitConfigAWS
+    @Provides
+    fun provideRetrofitAWS(@OkHttpJsonAWS client: OkHttpClient): Retrofit {
+        return Retrofit.Builder().baseUrl(URL_BASE_AWS).client(client)
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+            .build()
+    }
+
+    @InterceptorAWS
+    @Provides
+    fun provideHeaderInterceptorAWS(): Interceptor {
+        return Interceptor {
+            val requestBuilder = it.request().newBuilder()
+                .addHeader("Content-Type", "application/json")
+                .addHeader("api_key", BuildConfig.API_KEY_AWS)
+            it.proceed(requestBuilder.build())
+        }
+    }
+
 
     private const val READ_TIMEOUT = 30
     private const val WRITE_TIMEOUT = 30
