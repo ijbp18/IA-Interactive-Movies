@@ -8,11 +8,10 @@ The application architecture is based on Clean Architecture. It is composed of o
 * **Presentation**: This layer contains the UI elements ( Activities, Fragments, Views, Adapters, etc... ) and the Android [ViewModels](https://developer.android.com/topic/libraries/architecture/viewmodel) from the Android Architecture Components. The ViewModel receives events from the Views and proceeds to get the required data which is then turned into view states in the form of [Livedata](https://developer.android.com/topic/libraries/architecture/livedata). The Views either listen to or react to directly via [Data Binding](https://developer.android.com/topic/libraries/data-binding).
 * **Domain**: This holds the business logic. This layer contains the business models ( entities, Kotlin Data classes ), the contract definition for the Repositories and the business use cases.   
 * **Data**: This layer handles the data: Where it comes from and how to get it. This logic will conform to the contracts defined in the domain layer. The Repositories can choose whether the data should be fetched from a local o remote data sources. 
+* **Network**: The Network layer handles all communications with remote sources, in our case it makes a simple API call using a Retrofit interface.
 
-## Technology stack
 
-
-### front-end
+## Languages, libraries and tools used
 
 Android Native Application developed using Android Studio 4.0.1 and Google libraries.
 
@@ -21,4 +20,14 @@ Android Native Application developed using Android Studio 4.0.1 and Google libra
 * minSdkVersion 21
 * targetSdkVersion 31 
 * Hilt (Dependency injection) 2.35
+* Retrofit
+* OKHttp3
+* Glide
+* Mockito
+
+## Requirements
+
+* JDK 1.8
+* Android SDK
+* Latest Android SDK Tools and build tools.
 
