@@ -20,10 +20,11 @@ class MoviesFragment : BaseFragment(), MoviesAdapter.ItemSelectedListener {
     private val moviesViewModel: MoviesViewModel by viewModels()
     private val moviesAdapter: MoviesAdapter = MoviesAdapter(this@MoviesFragment)
     private var imageRouteUrlBase = ""
+    private var videoRouteUrlBase = ""
     private lateinit var communicator: Communicator
 
     override fun onMovieSelected(movie: MovieUI) {
-        communicator.passMovieData(movie)
+        communicator.passMovieData(movie, videoRouteUrlBase)
     }
 
     override fun onCreateView(
@@ -69,8 +70,16 @@ class MoviesFragment : BaseFragment(), MoviesAdapter.ItemSelectedListener {
 
         movies?.routes?.let { routeList ->
             routeList.forEach { item ->
-                if (item.code == IMAGE_ROUTE_KEY) {
-                    imageRouteUrlBase = item.sizes.medium
+                when (item.code) {
+                    IMAGE_ROUTE_KEY -> {
+                        imageRouteUrlBase = item.sizes.medium
+                    }
+                    VIDEO_ROUTE_KEY -> {
+                        videoRouteUrlBase = item.sizes.medium
+                    }
+                    else -> {
+                        //nothing to do
+                    }
                 }
             }
         }
@@ -85,6 +94,7 @@ class MoviesFragment : BaseFragment(), MoviesAdapter.ItemSelectedListener {
 
     companion object {
         const val IMAGE_ROUTE_KEY = "poster"
+        const val VIDEO_ROUTE_KEY = "trailer_mp4"
     }
 
 }

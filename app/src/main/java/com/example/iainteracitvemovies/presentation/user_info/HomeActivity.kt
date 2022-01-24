@@ -65,9 +65,10 @@ class HomeActivity : AppCompatActivity(), Communicator {
         transaction.commit()
     }
 
-    override fun passMovieData(movieSelected: MovieUI) {
+    override fun passMovieData(movieSelected: MovieUI, videoRouteUrlBase: String) {
         val bundle = Bundle()
         bundle.putSerializable(SELECTED_MOVIE_KEY, movieSelected)
+        bundle.putString(SELECTED_URL_MOVIE_KEY, videoRouteUrlBase)
 
         val transaction = this.supportFragmentManager.beginTransaction()
         val fragment = MovieDetailFragment()
@@ -79,6 +80,7 @@ class HomeActivity : AppCompatActivity(), Communicator {
 
     companion object{
         const val SELECTED_MOVIE_KEY = "selected_movie_key"
+        const val SELECTED_URL_MOVIE_KEY = "selected_url_movie_key"
     }
 
 }

@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:background="@android:color/transparent"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/colorAccent"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
